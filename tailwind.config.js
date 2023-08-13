@@ -5,6 +5,9 @@ export const content = [
   "./public/index.js"
 ];
 export const theme = {
-  extend: {},
+  extend: {
+    fontFamily: {'roboto':'Roboto'},
+  },
+  // 
 };
 export const plugins = [];
