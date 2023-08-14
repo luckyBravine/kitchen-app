@@ -7,6 +7,8 @@ import {LiaCocktailSolid} from "react-icons/lia"
 import {PiForkKnife} from "react-icons/pi"
 import {GoPerson} from "react-icons/go"
 
+import TweenOne from 'rc-tween-one'
+
 import chicken from "../src/assets/chicken.png"
 import pasta from "../src/assets/pasta.png"
 import spagheti from "../src/assets/spagheti.png"
@@ -14,19 +16,22 @@ import steak from "../src/assets/steak.png"
 
 
 function App() {
+  const element1:HTMLElement | number | null = document.getElementById("circle1");
+  const element2 = document.getElementById("circle2");
+  const path = element1 - element2;
 
-  const pi = 3.14159;
-  const circle1 = pi * 29.63 * 29.63
-  const circle2 = pi * 22 * 22
-  const path = circle1 - circle2
- console.log(path)
+//   const pi = 3.14159;
+//   const circle1 = pi * 29.63 * 29.63
+//   const circle2 = pi * 22 * 22
+//   const path = circle1 - circle2
+//  console.log(path)
 
   return (
    <section className="bg-slate-100 relative w-full overflow-hidden h-full">
     <div className="flex flex-row w-full">
       <div className='flex flex-col'>
-        <div className="top-[-118vh] ml-[-14rem] p-4 relative h-[70rem] w-[70rem] bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex justify-center items-center">
-          <div className="bg-slate-100 rounded-full h-[52rem] w-[52rem]">
+        {/* <div id="circle1" className="top-[-118vh] ml-[-14rem] p-4 relative h-[70rem] w-[70rem] bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex justify-center items-center">
+          <div id="circle2" className="bg-slate-100 rounded-full h-[52rem] w-[52rem]">
               <div className='absolute flex justify-center items-center mb-0 ml-[8rem] top-[120vh]'>
                 <img src={spagheti} alt="" className='top-[122vh]' />
                 <div className='' >
@@ -47,7 +52,7 @@ function App() {
               <span>Order Food</span>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className='flex items-center mx-auto top-[-102vh] relative'>
           <AiOutlineLeft className="mr-6 text-2xl font-black"/>
           <div className='flex mx-auto px-2'>
