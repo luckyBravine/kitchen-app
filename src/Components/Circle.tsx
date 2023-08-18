@@ -1,17 +1,30 @@
 
 
-const Circle = () => {
-  const circeWidth = 200
-  const radius = 85;
-  const dashArray = radius * Math.PI * 2
+const Circle = ({ images }) => {
+
+  const renderImages = () => {
+    return images.map((image, index) => (
+      <image
+        key={index}
+        href={image}
+        x={150 + 100 * Math.cos((index / images.length) * 2 * Math.PI)}
+        y={150 + 100 * Math.sin((index / images.length) * 2 * Math.PI)}
+        width="40"
+        height="40"
+        transform={`translate(-20, -20)`}
+      />
+    ));
+  };
+
   return (
-    <div className="flex relative w-full">
-      <svg width={circeWidth} height={circeWidth} viewBox={`0 0 ${circeWidth} ${circeWidth}`} className="bg-red-500">
-        <circle cx={circeWidth / 2} cy={circeWidth / 2} strokeWidth="15px" r={radius} className='circle-background' />
-        <circle cx={circeWidth / 2} cy={circeWidth / 2} strokeWidth="15px" r={radius} className='circle-slider' style={{strokeDasharray: dashArray}} />
+    <div>
+      <svg width="300" height="300">
+        <circle cx="150" cy="150" r="100" fill="lightgray" />
+        {renderImages()}
+        <circle cx="150" cy="150" r="50" fill="white" />
       </svg>
     </div>
-  )
-}
+  );
+};
 
-export default Circle
+export default Circle;

@@ -38,7 +38,7 @@ function App() {
     },
     {
       firstName: 'Chicken',
-      lastName: 'Filley',
+      lastName: 'Fillet',
       image: chicken,
     },
     {
@@ -48,11 +48,10 @@ function App() {
     },
     {
       firstName: 'Steak',
-      lastName: 'Filley',
+      lastName: 'Fillet',
       image: steak,
     }
   ];
-
   const chefContent = [
     {
       rating: 4.5,
@@ -66,36 +65,38 @@ function App() {
     {
       rating: 5.0,
       icon: <AiFillStar />,
-      name: 'Chef Feny',
-      meal: 'Spagheti & Meatballs',
-      description: `A true culinary artist who paints the plate with vibrant flavors and textures, this chef's spaghetti and meatballs is a masterpiece that leaves you wanting more.`,
+      name: 'Chef Ali',
+      meal: 'Chicken Fillet',
+      description: `When it comes to chicken fillet, Chef Ali is a true maestro. His dishes are a perfect symphony of flavors, textures, and presentation, leaving a lasting impression that's hard to forget`,
       likes: 45,
       dislikes: 0,
     },
     {
       rating: 4.5,
       icon: <AiFillStar />,
-      name: 'Chef Feny',
-      meal: 'Spagheti & Meatballs',
-      description: `A true culinary artist who paints the plate with vibrant flavors and textures, this chef's spaghetti and meatballs is a masterpiece that leaves you wanting more.`,
+      name: 'Chef Kadzo',
+      meal: 'Pasta Pak Adin',
+      description: `Eating pasta from this chef is like taking a trip to Italy with each forkful. The way they capture the essence of Italian cuisine is truly remarkable.`,
       likes: 45,
       dislikes: 0,
     },
     {
       rating: 4.5,
       icon: <AiFillStar />,
-      name: 'Chef Feny',
-      meal: 'Spagheti & Meatballs',
-      description: `A true culinary artist who paints the plate with vibrant flavors and textures, this chef's spaghetti and meatballs is a masterpiece that leaves you wanting more.`,
+      name: 'Chef Wafula',
+      meal: 'Steak Fillet',
+      description: `A culinary virtuoso with a fillet as their masterpiece. This chef's attention to detail and dedication to perfection are truly remarkable.`,
       likes: 45,
       dislikes: 0,
     }
   ]
 
+  
+
   return (
    <section className="bg-slate-100 relative w-full">
     <div className="grid grid-cols-2 w-[100vw] justify-center mx-auto gap-1">
-      <div className='flex flex-col w-[70%] relative bg-purple-800'>
+      <div className='flex flex-col relative bg-purple-800'>
         {/* <div id="circle1" className="top-[-118vh] ml-[-14rem] p-4 relative h-[70rem] w-[70rem] bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex justify-center items-center">
           <div id="circle2" className="bg-slate-100 rounded-full h-[52rem] w-[52rem]">
               <div className='absolute flex justify-center items-center mb-0 ml-[8rem] top-[120vh]'>
@@ -119,7 +120,7 @@ function App() {
             </div>
           </div>
         </div> */}
-        <Circle />
+        <Circle images={imageContent} />
         <div className='flex items-center mx-auto relative'>
           <AiOutlineLeft className="text-2xl font-black"/>
           <div className='flex mx-auto px-2'>
@@ -158,7 +159,7 @@ function App() {
           <div className='p-3 hover:bg-stone-300 rounded-full bg-white flex justify-center items-center mx-[2.5rem]'><BsMic className="text-2xl font-semibold"/></div>
         </div>
       </div>
-      <div className='flex-col flex mx-auto w-[30%] relative bg-black'>
+      <div className='flex-col flex mx-auto relative bg-black'>
         <div className='flex justify-center items-center relative h-[14vh] w-[30rem]'>
           <FaSearch className="text-xl mr-4" />
           <GiHamburgerMenu className="text-xl" />
