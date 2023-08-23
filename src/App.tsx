@@ -28,7 +28,6 @@ function App() {
     useRef<HTMLDivElement | null>(null);
   const chefList: MutableRefObject<HTMLDivElement | null> =
     useRef<HTMLDivElement | null>(null);
-  const contentWidth = 340;
 
   const [state, setState] = useState({
     isActive1: true,
@@ -41,21 +40,32 @@ function App() {
     gsap.to(chefList.current?.children[0], 0, {
       opacity: 1,
     });
+    gsap.to(imageSlide.current?.children[0], 0,{
+      backgroundColor: '#E2E8F0',
+    })
   }, []);
 
-  // const slideLeft = (index:number, duration:number, multiplied = 1) => {
-  //   gsap.from(chefList.current?.children[index], duration, {
-  //     x: -contentWidth * multiplied,
-  //     ease: Power3.easeOut,
-  //   });
-  // };
+  const slideLeft = (index:number, duration:number) => {
+    // gsap.from(imageSlide.current?.children[index], duration, {
+    //   backgroundColor: 'transparent',
+    //   // ease: Power3.easeOut,
+    // });
+    gsap.to(imageSlide.current?.children[index], duration, {
+      backgroundColor: '#E2E8F0',
+      // ease: Power3.easeIn,
+    });
+  };
 
-  // const slideRight = (index:number , duration:number, multiplied = 1) => {
-  //   gsap.to(chefList.current?.children[index], duration, {
-  //     x: contentWidth * multiplied,
-  //     ease: Power3.easeOut,
-  //   });
-  // };
+  const slideRight = (index:number , duration:number) => {
+    // gsap.from(imageSlide.current?.children[index], duration, {
+    //   backgroundColor: '#E2E8F0',
+    //   // ease: Power3.easeIn,
+    // });
+    gsap.to(imageSlide.current?.children[index], duration, {
+      backgroundColor: 'transparent',
+      // ease: Power3.easeOut,
+    });
+  };
 
   // const scale = (index, duration) => {
   //   gsap.from(imageList.current?.children[index], duration, {
@@ -75,97 +85,146 @@ function App() {
   const fadeIn = (index:number, duration:number) => {
     gsap.to(chefList.current?.children[index], duration, {
       opacity: 1,
-      delay: 1,
+      delay: 0.5,
     });
   };
 
   const nextSlide = () => {
     if (imageSlide.current?.children[0].classList.contains("active")) {
       setState({ isActive1: false, isActive2: true });
+      // gsap.to(imageSlide.current?.children[0], 1,{
+      //   backgroundColor: 'transparent',
+      // })
+      // gsap.to(imageSlide.current?.children[1], 1,{
+      //   backgroundColor: '#E2E8F0',
+      // })
+
+
       //Image transition
-      // slideLeft(0, 1);
-      // slideLeft(1, 1);
+      slideLeft(0, 1);
+      slideLeft(1, 1);
       // scale(1, 1);
-      // slideLeft(2, 1);
-      // slideLeft(2, 0);
+      // slideLeft(3, 1);
+      // slideLeft(3, 0);
       fadeOut(0, 1);
       fadeIn(1, 1);
     } else if (imageSlide.current?.children[1].classList.contains("active")) {
       setState({ isActive2: false, isActive3: true });
+      // gsap.to(imageSlide.current?.children[1], 1,{
+      //   backgroundColor: 'transparent',
+      // })
+      // gsap.to(imageSlide.current?.children[2], 1,{
+      //   backgroundColor: '#E2E8F0',
+      // })
       //Image transition
       // slideRight(0, 1);
-      // slideLeft(1, 1, 2);
-      // slideLeft(2, 1, 2);
+      slideLeft(1, 1);
+      slideLeft(2, 1);
       // scale(2, 1);
       //content transition
       fadeOut(1, 1);
       fadeIn(2, 1);
     } else if (imageSlide.current?.children[2].classList.contains("active")) {
       setState({ isActive3: false, isActive4: true });
+      // gsap.to(imageSlide.current?.children[2], 1,{
+      //   backgroundColor: 'transparent',
+      // })
+      // gsap.to(imageSlide.current?.children[3], 1,{
+      //   backgroundColor: '#E2E8F0',
+      // })
       //Image transition
       // slideRight(0, 1);
-      // slideLeft(1, 1, 2);
-      // slideLeft(2, 1, 2);
+      slideLeft(3, 1);
+      slideLeft(2, 1);
       // scale(2, 1);
       //content transition
-      fadeOut(1, 1);
-      fadeIn(2, 1);
+      fadeOut(2, 1);
+      fadeIn(3, 1);
     }else if (imageSlide.current?.children[3].classList.contains("active")) {
-      setState({ isActive1: true, isActive3: false });
+      setState({ isActive1: true, isActive4: false });
+      // gsap.to(imageSlide.current?.children[3], 1,{
+      //   backgroundColor: 'transparent',
+      // })
+      // gsap.to(imageSlide.current?.children[0], 1,{
+      //   backgroundColor: '#E2E8F0',
+      // })
       //Image transition
-      // slideLeft(2, 1, 3);
-      // slideLeft(0, 1, 0);
-      // slideLeft(1, 0, 0);
+      slideLeft(3, 1);
+      slideLeft(0, 1);
+      // slideLeft(1, 0);
       // scale(0, 1);
       //content transition
-      fadeOut(2, 1);
+      fadeOut(4, 1);
       fadeIn(0, 1);
     }
   };
 
   const prevSlide = () => {
     if (imageSlide.current?.children[0].classList.contains("active")) {
-      setState({ isActive1: false, isActive3: true });
+      setState({ isActive1: true, isActive4: false });
+      // gsap.to(imageSlide.current?.children[0], 1,{
+      //   backgroundColor: 'transparent',
+      // })
+      // gsap.to(imageSlide.current?.children[3], 1,{
+      //   backgroundColor: '#E2E8F0',
+      // })
       //Image transition
-      // slideLeft(2, 0, 3);
-      // slideLeft(2, 1, 2);
+      slideLeft(2, 0);
+      slideLeft(2, 1);
       // scale(2, 1);
-      // slideRight(0, 1);
-      // slideRight(1, 1);
-      //content transtion
-      fadeOut(0, 1);
-      fadeIn(2, 1);
-    } else if (imageSlide.current?.children[1].classList.contains("active")) {
-      setState({ isActive2: false, isActive1: true });
-      //Image transition
-      // slideLeft(0, 0);
-      // slideRight(0, 1, 0);
-      // slideRight(1, 1, 0);
-      // slideRight(2, 1, 2);
-      // scale(0, 1);
+      slideRight(0, 1);
+      slideRight(1, 1);
       //content transtion
       fadeOut(1, 1);
-      fadeIn(0, 1);
+      fadeIn(3, 1);
+    } else if (imageSlide.current?.children[1].classList.contains("active")) {
+      setState({  isActive2: true, isActive1: false });
+      // gsap.to(imageSlide.current?.children[1], 1,{
+      //   backgroundColor: 'transparent',
+      // })
+      // gsap.to(imageSlide.current?.children[0], 1,{
+      //   backgroundColor: '#E2E8F0',
+      // })
+      //Image transition
+      slideLeft(0, 0);
+      slideRight(0, 1);
+      slideRight(1, 1);
+      slideRight(2, 1);
+      // scale(0, 1);
+      //content transtion
+      fadeOut(2, 1);
+      fadeIn(1, 1);
     } else if (imageSlide.current?.children[2].classList.contains("active")) {
       setState({ isActive2: true, isActive3: false });
-      // slideLeft(2, 1);
-      // slideLeft(1, 0, 2);
-      // slideLeft(1, 1);
+      // gsap.to(imageSlide.current?.children[2], 1,{
+      //   backgroundColor: 'transparent',
+      // })
+      // gsap.to(imageSlide.current?.children[1], 1,{
+      //   backgroundColor: '#E2E8F0',
+      // })
+      slideLeft(2, 1);
+      slideLeft(1, 0, 2);
+      slideLeft(1, 1);
       // scale(1, 1);
       //content transtion
-      fadeOut(2, 1);
-      fadeIn(1, 1);
+      fadeOut(1, 1);
+      fadeIn(2, 1);
     } else if (imageSlide.current?.children[3].classList.contains("active")) {
       setState({ isActive3: true, isActive4: false });
-      // slideLeft(2, 1);
-      // slideLeft(1, 0, 2);
-      // slideLeft(1, 1);
+      // gsap.to(imageSlide.current?.children[3], 1,{
+      //   backgroundColor: 'transparent',
+      // })
+      // gsap.to(imageSlide.current?.children[2], 1,{
+      //   backgroundColor: '#E2E8F0',
+      // })
+      slideLeft(2, 1);
+      slideLeft(1, 0);
+      slideLeft(3, 1);
       // scale(1, 1);
       //content transtion
-      fadeOut(2, 1);
-      fadeIn(1, 1);
+      fadeOut(3, 1);
+      fadeIn(2, 1);
     }
-
   };
 
   const imageContent = [
@@ -274,7 +333,7 @@ function App() {
               }}
             >
               <div
-                className={`${state.isActive4 ? "active:bg-slate-200" : ""} flex-col hover:bg-stone-200 justify-center w-[100px] items-center p-1 mx-6 rounded-md`}
+                className={`${state.isActive1 ? "active" : ""} flex-col hover:bg-stone-200 justify-center w-[100px] items-center p-1 mx-6 rounded-md`}
               >
                 <img src={imageContent[0].image} alt="" className="w-18 h-20" />
                 <h4 className="font-normal font-roboto text-md mx-auto text-center ">
@@ -282,7 +341,7 @@ function App() {
                 </h4>
               </div>
               <div
-                className={`${state.isActive4 ? "active:bg-slate-200" : ""} flex-col hover:bg-stone-200 justify-center w-[100px] items-center p-1 mx-6 rounded-md`}
+                className={`${state.isActive2 ? "active" : ""} flex-col hover:bg-stone-200 justify-center w-[100px] items-center p-1 mx-6 rounded-md`}
               >
                 <img
                   src={imageContent[1].image}
@@ -294,7 +353,7 @@ function App() {
                 </h4>
               </div>
               <div
-                className={`${state.isActive4 ? "active:bg-slate-200" : ""} flex-col hover:bg-stone-200 justify-center w-[100px] items-center p-1 mx-6 rounded-md`}
+                className={`${state.isActive3 ? "active" : ""} flex-col hover:bg-stone-200 justify-center w-[100px] items-center p-1 mx-6 rounded-md`}
               >
                 <img
                   src={imageContent[2].image}
@@ -306,7 +365,7 @@ function App() {
                 </h4>
               </div>
               <div
-                className={`${state.isActive4 ? "active:bg-slate-200" : ""} flex-col hover:bg-stone-200 justify-center w-[100px] items-center p-1 mx-6 rounded-md`}
+                className={`${state.isActive4 ? "active" : ""} flex-col hover:bg-stone-200 justify-center w-[100px] items-center p-1 mx-6 rounded-md`}
               >
                 <img
                   src={imageContent[3].image}
@@ -357,7 +416,7 @@ function App() {
                 chefList.current = el;
               }}
             >
-              <div className={`${state.isActive4 ? "active" : "opacity-0"} absolute`}>
+              <div className={`${state.isActive1 ? "active" : "opacity-0"} absolute`}>
                 <div className="w-12 mt-6 ml-6 pl-4 h-16 flex flex-col justify-center bg-green-800 rounded-lg">
                   <h2 className="text-4xl font-black">
                     {chefContent[0].rating}
@@ -383,7 +442,7 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className={`${state.isActive4 ? "active" : "opacity-0"} absolute`}>
+              <div className={`${state.isActive2 ? "active" : "opacity-0"} absolute`}>
                 <div className="w-12 mt-6 ml-6 pl-4 h-16 flex flex-col justify-center bg-green-800 rounded-lg">
                   <h2 className="text-4xl font-black">
                     {chefContent[1].rating}
@@ -409,7 +468,7 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className={`${state.isActive4 ? "active" : "opacity-0"} absolute`}>
+              <div className={`${state.isActive3 ? "active" : "opacity-0"} absolute`}>
                 <div className="w-12 mt-6 ml-6 pl-4 h-16 flex flex-col justify-center bg-green-800 rounded-lg">
                   <h2 className="text-4xl font-black">
                     {chefContent[2].rating}
