@@ -6,15 +6,14 @@ import { VscThumbsup, VscThumbsdown } from "react-icons/vsc";
 import { LiaCocktailSolid } from "react-icons/lia";
 import { PiForkKnife } from "react-icons/pi";
 import { GoPerson } from "react-icons/go";
-// import {BsFillPlayFill, BsBorderStyle} from 'react-icons/bs'
+import {BsFillPlayFill, BsBorderStyle} from 'react-icons/bs'
 
-// import Twe enOne from 'rc-tween-one'
 
 import chicken from "../src/assets/chicken.png";
 import pasta from "../src/assets/pasta.png";
 import spagheti from "../src/assets/spagheti.png";
 import steak from "../src/assets/steak.png";
-import Circle from "./Components/Circle";
+// import Circle from "./Components/Circle";
 
 import { gsap } from "gsap";
 
@@ -29,7 +28,14 @@ function App() {
   const chefList: MutableRefObject<HTMLDivElement | null> =
     useRef<HTMLDivElement | null>(null);
 
-  const [state, setState] = useState({
+  type StateType = {
+    isActive1: boolean,
+    isActive2: boolean,
+    isActive3: boolean,
+    isActive4: boolean,
+  }
+
+  const [state, setState] = useState<StateType>({
     isActive1: true,
     isActive2: false,
     isActive3: false,
@@ -44,37 +50,6 @@ function App() {
       backgroundColor: '#E2E8F0',
     })
   }, []);
-
-  const slideLeft = (index:number, duration:number) => {
-    // gsap.from(imageSlide.current?.children[index], duration, {
-    //   backgroundColor: 'transparent',
-    //   // ease: Power3.easeOut,
-    // });
-    gsap.to(imageSlide.current?.children[index], duration, {
-      backgroundColor: '#E2E8F0',
-      // ease: Power3.easeIn,
-    });
-  };
-
-  const slideRight = (index:number , duration:number) => {
-    // gsap.from(imageSlide.current?.children[index], duration, {
-    //   backgroundColor: '#E2E8F0',
-    //   // ease: Power3.easeIn,
-    // });
-    gsap.to(imageSlide.current?.children[index], duration, {
-      backgroundColor: 'transparent',
-      // ease: Power3.easeOut,
-    });
-  };
-
-  // const scale = (index, duration) => {
-  //   gsap.from(imageList.current?.children[index], duration, {
-  //     scale: 1.2,
-  //     ease: Power3.easeOut,
-  //   });
-  // };
-
-  //Content transition
 
   const fadeOut = (index:number, duration:number) => {
     gsap.to(chefList.current?.children[index], duration, {
@@ -92,135 +67,93 @@ function App() {
   const nextSlide = () => {
     if (imageSlide.current?.children[0].classList.contains("active")) {
       setState({ isActive1: false, isActive2: true });
-      // gsap.to(imageSlide.current?.children[0], 1,{
-      //   backgroundColor: 'transparent',
-      // })
-      // gsap.to(imageSlide.current?.children[1], 1,{
-      //   backgroundColor: '#E2E8F0',
-      // })
-
-
-      //Image transition
-      slideLeft(0, 1);
-      slideLeft(1, 1);
-      // scale(1, 1);
-      // slideLeft(3, 1);
-      // slideLeft(3, 0);
+      gsap.to(imageSlide.current?.children[0], 1,{
+        backgroundColor: 'transparent',
+      })
+      gsap.to(imageSlide.current?.children[1], 1,{
+        backgroundColor: '#E2E8F0',
+      })
       fadeOut(0, 1);
       fadeIn(1, 1);
     } else if (imageSlide.current?.children[1].classList.contains("active")) {
       setState({ isActive2: false, isActive3: true });
-      // gsap.to(imageSlide.current?.children[1], 1,{
-      //   backgroundColor: 'transparent',
-      // })
-      // gsap.to(imageSlide.current?.children[2], 1,{
-      //   backgroundColor: '#E2E8F0',
-      // })
-      //Image transition
-      // slideRight(0, 1);
-      slideLeft(1, 1);
-      slideLeft(2, 1);
-      // scale(2, 1);
+      gsap.to(imageSlide.current?.children[1], 1,{
+        backgroundColor: 'transparent',
+      })
+      gsap.to(imageSlide.current?.children[2], 1,{
+        backgroundColor: '#E2E8F0',
+      })
       //content transition
       fadeOut(1, 1);
       fadeIn(2, 1);
     } else if (imageSlide.current?.children[2].classList.contains("active")) {
       setState({ isActive3: false, isActive4: true });
-      // gsap.to(imageSlide.current?.children[2], 1,{
-      //   backgroundColor: 'transparent',
-      // })
-      // gsap.to(imageSlide.current?.children[3], 1,{
-      //   backgroundColor: '#E2E8F0',
-      // })
-      //Image transition
-      // slideRight(0, 1);
-      slideLeft(3, 1);
-      slideLeft(2, 1);
-      // scale(2, 1);
+      gsap.to(imageSlide.current?.children[2], 1,{
+        backgroundColor: 'transparent',
+      })
+      gsap.to(imageSlide.current?.children[3], 1,{
+        backgroundColor: '#E2E8F0',
+      })
       //content transition
       fadeOut(2, 1);
       fadeIn(3, 1);
     }else if (imageSlide.current?.children[3].classList.contains("active")) {
       setState({ isActive1: true, isActive4: false });
-      // gsap.to(imageSlide.current?.children[3], 1,{
-      //   backgroundColor: 'transparent',
-      // })
-      // gsap.to(imageSlide.current?.children[0], 1,{
-      //   backgroundColor: '#E2E8F0',
-      // })
-      //Image transition
-      slideLeft(3, 1);
-      slideLeft(0, 1);
-      // slideLeft(1, 0);
-      // scale(0, 1);
+      gsap.to(imageSlide.current?.children[3], 1,{
+        backgroundColor: 'transparent',
+      })
+      gsap.to(imageSlide.current?.children[0], 1,{
+        backgroundColor: '#E2E8F0',
+      })
       //content transition
-      fadeOut(4, 1);
+      fadeOut(3, 1);
       fadeIn(0, 1);
     }
   };
 
   const prevSlide = () => {
     if (imageSlide.current?.children[0].classList.contains("active")) {
-      setState({ isActive1: true, isActive4: false });
-      // gsap.to(imageSlide.current?.children[0], 1,{
-      //   backgroundColor: 'transparent',
-      // })
-      // gsap.to(imageSlide.current?.children[3], 1,{
-      //   backgroundColor: '#E2E8F0',
-      // })
-      //Image transition
-      slideLeft(2, 0);
-      slideLeft(2, 1);
-      // scale(2, 1);
-      slideRight(0, 1);
-      slideRight(1, 1);
+      setState({ isActive1: false, isActive4: true });
+      gsap.to(imageSlide.current?.children[0], 1,{
+        backgroundColor: 'transparent',
+      })
+      gsap.to(imageSlide.current?.children[3], 1,{
+        backgroundColor: '#E2E8F0',
+      })
       //content transtion
-      fadeOut(1, 1);
+      fadeOut(0, 1);
       fadeIn(3, 1);
     } else if (imageSlide.current?.children[1].classList.contains("active")) {
-      setState({  isActive2: true, isActive1: false });
-      // gsap.to(imageSlide.current?.children[1], 1,{
-      //   backgroundColor: 'transparent',
-      // })
-      // gsap.to(imageSlide.current?.children[0], 1,{
-      //   backgroundColor: '#E2E8F0',
-      // })
-      //Image transition
-      slideLeft(0, 0);
-      slideRight(0, 1);
-      slideRight(1, 1);
-      slideRight(2, 1);
-      // scale(0, 1);
+      setState({  isActive2: false, isActive1: true });
+      gsap.to(imageSlide.current?.children[1], 1,{
+        backgroundColor: 'transparent',
+      })
+      gsap.to(imageSlide.current?.children[0], 1,{
+        backgroundColor: '#E2E8F0',
+      })
+      
+      //content transtion
+      fadeOut(1, 1);
+      fadeIn(0, 1);
+    } else if (imageSlide.current?.children[2].classList.contains("active")) {
+      setState({ isActive2: true, isActive3: false });
+      gsap.to(imageSlide.current?.children[2], 1,{
+        backgroundColor: 'transparent',
+      })
+      gsap.to(imageSlide.current?.children[1], 1,{
+        backgroundColor: '#E2E8F0',
+      })
       //content transtion
       fadeOut(2, 1);
       fadeIn(1, 1);
-    } else if (imageSlide.current?.children[2].classList.contains("active")) {
-      setState({ isActive2: true, isActive3: false });
-      // gsap.to(imageSlide.current?.children[2], 1,{
-      //   backgroundColor: 'transparent',
-      // })
-      // gsap.to(imageSlide.current?.children[1], 1,{
-      //   backgroundColor: '#E2E8F0',
-      // })
-      slideLeft(2, 1);
-      slideLeft(1, 0, 2);
-      slideLeft(1, 1);
-      // scale(1, 1);
-      //content transtion
-      fadeOut(1, 1);
-      fadeIn(2, 1);
     } else if (imageSlide.current?.children[3].classList.contains("active")) {
       setState({ isActive3: true, isActive4: false });
-      // gsap.to(imageSlide.current?.children[3], 1,{
-      //   backgroundColor: 'transparent',
-      // })
-      // gsap.to(imageSlide.current?.children[2], 1,{
-      //   backgroundColor: '#E2E8F0',
-      // })
-      slideLeft(2, 1);
-      slideLeft(1, 0);
-      slideLeft(3, 1);
-      // scale(1, 1);
+      gsap.to(imageSlide.current?.children[3], 1,{
+        backgroundColor: 'transparent',
+      })
+      gsap.to(imageSlide.current?.children[2], 1,{
+        backgroundColor: '#E2E8F0',
+      })
       //content transtion
       fadeOut(3, 1);
       fadeIn(2, 1);
@@ -258,6 +191,7 @@ function App() {
       description: `A true culinary artist who paints the plate with vibrant flavors and textures, this chef's spaghetti and meatballs is a masterpiece that leaves you wanting more.`,
       likes: 45,
       dislikes: 0,
+      bgColor: '#228B22'
     },
     {
       rating: 5.3,
@@ -267,6 +201,7 @@ function App() {
       description: `When it comes to chicken fillet, Chef Ali is a true maestro. His dishes are a perfect symphony of flavors, textures, and presentation, leaving a lasting impression that's hard to forget`,
       likes: 68,
       dislikes: 0,
+      bgColor: '#7851A9'
     },
     {
       rating: 5.5,
@@ -276,6 +211,7 @@ function App() {
       description: `Eating pasta from this chef is like taking a trip to Italy with each forkful. The way they capture the essence of Italian cuisine is truly remarkable.`,
       likes: 105,
       dislikes: 0,
+      bgColor: '#FFFF00'
     },
     {
       rating: 4.8,
@@ -285,19 +221,20 @@ function App() {
       description: `A culinary virtuoso with a fillet as their masterpiece. This chef's attention to detail and dedication to perfection are truly remarkable.`,
       likes: 54,
       dislikes: 0,
+      bgColor: '#FFDB58'
     },
   ];
 
   return (
-    <section className="bg-slate-100 relative w-full">
-      <div className="grid grid-cols-2 w-[100vw] justify-center mx-auto gap-1">
+    <section className="bg-slate-100 relative w-full overflow-hidden">
+      <div className="grid grid-cols-3 w-[100vw] justify-center mx-auto gap-1 overflow-hidden">
         <div
-          className="flex flex-col relative bg-purple-800"
+          className="flex flex-col col-span-2 relative min-w-[100%] mx-auto"
           ref={(el) => {
             imageList.current = el;
           }}
         >
-          {/* <div id="circle1" className="top-[-118vh] ml-[-14rem] p-4 relative h-[70rem] w-[70rem] bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex justify-center items-center">
+          <div id="circle1" className="top-[-120vh] ml-[-16rem] p-4 relative h-[70rem] w-[70rem] bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex justify-center items-center">
           <div id="circle2" className="bg-slate-100 rounded-full h-[52rem] w-[52rem]">
               <div className='absolute flex justify-center items-center mb-0 ml-[8rem] top-[120vh]'>
                 <img src={spagheti} alt="" className='top-[122vh]' />
@@ -317,11 +254,11 @@ function App() {
             <div className='flex justify-center items-center ml-6'>
               <BsBorderStyle className="mr-2 text-xl" />
               <span>Order Food</span>
-            </div>{state.isActive1 ? "active" : ""}
+            </div>
           </div>
-        </div> */}
-          <Circle images={imageContent} />
-          <div className="flex items-center mx-auto relative">
+        </div>
+          {/* <Circle images={imageContent} /> */}
+          <div className="flex items-center mx-auto relative top-[-105vh]">
             <AiOutlineLeft
               className="text-2xl font-black"
               onClick={prevSlide}
@@ -382,7 +319,7 @@ function App() {
               onClick={nextSlide}
             />
           </div>
-          <div className="flex justify-center items-center mx-auto my-8 relative">
+          <div className="flex justify-center items-center mx-auto relative top-[-101vh]">
             <div className="p-2 hover:bg-stone-300 rounded-lg flex justify-center items-center mx-[2.5rem]">
               <PiForkKnife className="text-2xl font-semibold" />
             </div>
@@ -400,8 +337,8 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="flex-col flex mx-auto relative bg-black">
-          <div className="flex justify-center items-center relative h-[14vh] w-[30rem]">
+        <div className="flex-col flex mx-auto relative min-w-[100%]">
+          <div className="flex justify-center items-center relative h-[12vh]">
             <FaSearch className="text-xl mr-4" />
             <GiHamburgerMenu className="text-xl" />
           </div>
@@ -443,7 +380,7 @@ function App() {
                 </div>
               </div>
               <div className={`${state.isActive2 ? "active" : "opacity-0"} absolute`}>
-                <div className="w-12 mt-6 ml-6 pl-4 h-16 flex flex-col justify-center bg-green-800 rounded-lg">
+                <div className="w-12 mt-6 ml-6 pl-4 h-16 flex flex-col justify-center bg-purple-800 rounded-lg">
                   <h2 className="text-4xl font-black">
                     {chefContent[1].rating}
                   </h2>
@@ -469,7 +406,7 @@ function App() {
                 </div>
               </div>
               <div className={`${state.isActive3 ? "active" : "opacity-0"} absolute`}>
-                <div className="w-12 mt-6 ml-6 pl-4 h-16 flex flex-col justify-center bg-green-800 rounded-lg">
+                <div className="w-12 mt-6 ml-6 pl-4 h-16 flex flex-col justify-center bg-yellow-800 rounded-lg">
                   <h2 className="text-4xl font-black">
                     {chefContent[2].rating}
                   </h2>
@@ -495,7 +432,7 @@ function App() {
                 </div>
               </div>
               <div className={`${state.isActive4 ? "active" : "opacity-0"} absolute`}>
-                <div className="w-12 mt-6 ml-6 pl-4 h-16 flex flex-col justify-center bg-green-800 rounded-lg">
+                <div className="w-12 mt-6 ml-6 pl-4 h-16 flex flex-col justify-center bg-gray-800 rounded-lg">
                   <h2 className="text-4xl font-black">
                     {chefContent[3].rating}
                   </h2>
