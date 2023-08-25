@@ -55,10 +55,17 @@ function App() {
     gsap.to(chefList.current?.children[index], duration, {
       opacity: 0,
     });
+    gsap.to(imageList.current?.children[index], duration, {
+      opacity: 0,
+    });
   };
 
   const fadeIn = (index:number, duration:number) => {
     gsap.to(chefList.current?.children[index], duration, {
+      opacity: 1,
+      delay: 0.5,
+    });
+    gsap.to(imageList.current?.children[index], duration, {
       opacity: 1,
       delay: 0.5,
     });
@@ -225,28 +232,81 @@ function App() {
     },
   ];
 
+  const sliderContent = [
+    {
+      fName: "Spagheti &",
+      lName: "Meatballs",
+      image: spagheti,
+      details: '#1 Most loved dish'
+    },
+    {
+      fName: "Chicken",
+      lName: "Fillet",
+      image: chicken,
+      details: '#2 Most loved dish'
+    },
+    {
+      fName: "Pasta",
+      lName: "Pak Adin",
+      image: pasta,
+      details: '#3 Most loved dish'
+    },
+    {
+      fName: "Steak",
+      lName: "Fillet",
+      image: steak,
+      details: '#4 Most loved dish'
+    },
+  ]
+
   return (
     <section className="bg-slate-100 relative w-full overflow-hidden">
       <div className="grid grid-cols-3 w-[100vw] justify-center mx-auto gap-1 overflow-hidden">
         <div
           className="flex flex-col col-span-2 relative min-w-[100%] mx-auto"
+          
+        >
+          <div id="circle1" className="top-[-118vh] md:top-[-116vh] lg:top-[-120vh] ml-[-17rem] md:ml-[-16rem] p-4 relative h-[60rem] w-[60rem] md:h-[70rem] md:w-[70rem] bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex justify-center items-center">
+          <div id="circle2" className="bg-slate-100 rounded-full h-[40rem] w-[40rem] md:h-[52rem] md:w-[52rem]" 
           ref={(el) => {
             imageList.current = el;
           }}
-        >
-          <div id="circle1" className="top-[-120vh] ml-[-16rem] p-4 relative h-[70rem] w-[70rem] bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex justify-center items-center">
-          <div id="circle2" className="bg-slate-100 rounded-full h-[52rem] w-[52rem]">
-              <div className='absolute flex justify-center items-center mb-0 ml-[8rem] top-[120vh]'>
-                <img src={spagheti} alt="" className='top-[122vh]' />
-                <div className='' >
-                  <span className='mb-2 font-roboto'>#1 Most loved dish</span><br />
-                  <h1 className='text-7xl font-thin font-roboto'>Spagheti &</h1>
-                  <h1 className='text-8xl font-black font-roboto mt-2'>MeatBalls</h1>
+          >
+              <div className={`${state.isActive1 ? "active" : "opacity-0"} absolute flex flex-col md:flex-row justify-center items-center mb-0 ml-[6.5rem] md:ml-[8rem] top-[114vh] md:top-[120vh]`}>
+                <img src={sliderContent[0].image} alt="" className='top-[122vh]' />
+                <div className='flex md:flex-col flex-row' >
+                  <span className='mb-2 font-roboto hidden md:block'>{sliderContent[0].details}</span><br />
+                  <h1 className='text-3xl md:text-7xl font-thin font-roboto'>{sliderContent[0].fName}</h1>
+                  <h1 className='text-4xl md:text-8xl font-black font-roboto mt-0 md:mt-2'>{sliderContent[0].lName}</h1>
+                </div>
+              </div>
+              <div className={`${state.isActive2 ? "active" : "opacity-0"} absolute flex flex-col md:flex-row mb-0 ml-[4rem] md:ml-[8rem] top-[121vh] md:top-[130vh]`}>
+                <img src={sliderContent[1].image} alt="" className='top-[122vh]' />
+                <div className='flex md:flex-col flex-row' >
+                  <span className='mb-2 font-roboto hidden md:block'>{sliderContent[1].details}</span><br />
+                  <h1 className='text-3xl md:text-7xl font-thin font-roboto'>{sliderContent[1].fName}</h1>
+                  <h1 className='text-4xl md:text-8xl font-black font-roboto mt-0 md:mt-2'>{sliderContent[1].lName}</h1>
+                </div>
+              </div>
+              <div className={`${state.isActive3 ? "active" : "opacity-0"} absolute flex flex-col md:flex-row justify-center items-center mb-0 ml-[4rem] md:ml-[8rem] top-[121vh] md:top-[130vh]`}>
+                <img src={sliderContent[2].image} alt="" className='top-[122vh]' />
+                <div className='flex md:flex-col flex-row' >
+                  <span className='mb-2 font-roboto hidden md:block'>{sliderContent[2].details}</span><br />
+                  <h1 className='text-3xl md:text-7xl font-thin font-roboto mr-2 md:mr-0'>{sliderContent[2].fName}</h1>
+                  <h1 className='tex-4xl md:text-8xl font-black font-roboto mt-0 md:mt-2'>{sliderContent[2].lName}</h1>
+                </div>
+              </div>
+              <div className={`${state.isActive4 ? "active" : "opacity-0"} absolute flex flex-col md:flex-row justify-center items-center mb-0 ml-[4rem] md:ml-[8rem] top-[122vh] md:top-[130vh]`}>
+                <img src={sliderContent[3].image} alt="" className='top-[122vh]' />
+                <div className='flex md:flex-col flex-row' >
+                  <span className='mb-2 font-roboto hidden md:block'>{sliderContent[3].details}</span><br />
+                  <h1 className='text-3xl md:text-7xl font-thin font-roboto mr-2 md:mr-0'>{sliderContent[3].fName}</h1>
+                  <h1 className='text-4xl md:text-8xl font-black font-roboto mt-0 md:mt-2'>{sliderContent[3].lName}</h1>
                 </div>
               </div>
             
           </div>
-          <div className='absolute flex justify-center items-center mb-0 mr-[-32rem] top-[174vh]'>
+          <div className='hidden absolute md:flex justify-center items-center mb-0 mr-[-32rem] top-[174vh]'>
             <div className='flex justify-center items-center mr-6'>
               <BsFillPlayFill className="mr-2 text-xl" />
               <span>Play Video</span>
@@ -258,68 +318,68 @@ function App() {
           </div>
         </div>
           {/* <Circle images={imageContent} /> */}
-          <div className="flex items-center mx-auto relative top-[-105vh]">
+          <div className="flex items-center mx-0 md:mx-auto relative top-[-90vh] md:top-[-96vh] lg:top-[-105vh]">
             <AiOutlineLeft
-              className="text-2xl font-black"
+              className="text-base md:text-2xl font-black"
               onClick={prevSlide}
             />
             <div
-              className="flex mx-auto px-2"
+              className="flex mx-0 md:mx-auto px-2"
               ref={(el) => {
                 imageSlide.current = el;
               }}
             >
               <div
-                className={`${state.isActive1 ? "active" : ""} flex-col hover:bg-stone-200 justify-center w-[100px] items-center p-1 mx-6 rounded-md`}
+                className={`${state.isActive1 ? "active" : ""} flex-col hover:bg-stone-200 justify-center w-[80px] md:w-[100px] items-center p-1 mx-1 md:mx-6 rounded-md`}
               >
-                <img src={imageContent[0].image} alt="" className="w-18 h-20" />
-                <h4 className="font-normal font-roboto text-md mx-auto text-center ">
+                <img src={imageContent[0].image} alt="" className="w-18 h-20 object-cover" />
+                <h4 className="font-normal font-roboto hidden md:block text-md mx-auto text-center ">
                   {imageContent[0].firstName} <br /> {imageContent[0].lastName}
                 </h4>
               </div>
               <div
-                className={`${state.isActive2 ? "active" : ""} flex-col hover:bg-stone-200 justify-center w-[100px] items-center p-1 mx-6 rounded-md`}
+                className={`${state.isActive2 ? "active" : ""} flex-col hover:bg-stone-200 justify-center w-[80px] md:w-[100px] items-center p-1 mx-1 md:mx-6 rounded-md`}
               >
                 <img
                   src={imageContent[1].image}
                   alt=""
                   className="w-18 h-20 object-cover"
                 />
-                <h4 className="font-normal font-roboto text-md mx-auto text-center ">
+                <h4 className="font-normal font-roboto hidden md:block mx-auto text-center ">
                   {imageContent[1].firstName} <br /> {imageContent[1].lastName}
                 </h4>
               </div>
               <div
-                className={`${state.isActive3 ? "active" : ""} flex-col hover:bg-stone-200 justify-center w-[100px] items-center p-1 mx-6 rounded-md`}
+                className={`${state.isActive3 ? "active" : ""} flex-col hover:bg-stone-200 justify-center w-[80px] md:w-[100px] items-center p-1 mx-1 md:mx-6 rounded-md`}
               >
                 <img
                   src={imageContent[2].image}
                   alt=""
                   className="w-18 h-20 object-cover"
                 />
-                <h4 className="font-normal font-roboto text-md mx-auto text-center ">
+                <h4 className="font-normal font-roboto hidden md:block mx-auto text-center ">
                   {imageContent[2].firstName} <br /> {imageContent[2].lastName}
                 </h4>
               </div>
               <div
-                className={`${state.isActive4 ? "active" : ""} flex-col hover:bg-stone-200 justify-center w-[100px] items-center p-1 mx-6 rounded-md`}
+                className={`${state.isActive4 ? "active" : ""} flex-col hover:bg-stone-200 justify-center w-[80px] md:w-[100px] items-center p-1 mx-1 md:mx-6 rounded-md`}
               >
                 <img
                   src={imageContent[3].image}
                   alt=""
                   className="w-18 h-20 object-cover"
                 />
-                <h4 className="font-normal font-roboto text-md mx-auto text-center ">
+                <h4 className="font-normal font-roboto hidden md:block mx-auto text-center ">
                   {imageContent[3].firstName} <br /> {imageContent[3].lastName}
                 </h4>
               </div>
             </div>
             <AiOutlineRight
-              className=" text-2xl font-black "
+              className="text-base md:text-2xl font-black "
               onClick={nextSlide}
             />
           </div>
-          <div className="flex justify-center items-center mx-auto relative top-[-101vh]">
+          <div className="hidden lg:flex justify-center items-center mx-auto relative top-[-101vh]">
             <div className="p-2 hover:bg-stone-300 rounded-lg flex justify-center items-center mx-[2.5rem]">
               <PiForkKnife className="text-2xl font-semibold" />
             </div>
@@ -337,7 +397,7 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="flex-col flex mx-auto relative min-w-[100%]">
+        <div className="flex-col hidden lg:flex mx-auto relative min-w-[100%]">
           <div className="flex justify-center items-center relative h-[12vh]">
             <FaSearch className="text-xl mr-4" />
             <GiHamburgerMenu className="text-xl" />

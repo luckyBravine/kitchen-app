@@ -11,5 +11,6 @@ body{
     padding: 0;
     position: relative;
     box-sizing: border-box;   
-    width: 100vw;    
+    width: 100vw;
+    overflow: hidden;    
 }  

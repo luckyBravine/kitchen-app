@@ -4,12 +4,11 @@
     --color3: #f64f59;
 }
 
-.circle-background{
-    fill: none;
-    stroke: #ddd;
-}
-
-.circle-slider{
-    fill: none;
-    stroke: var(--color3);
-}
+body{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    box-sizing: border-box;   
+    width: 100vw;
+    overflow: hidden;    
+}  
