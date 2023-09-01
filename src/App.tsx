@@ -12,7 +12,7 @@ import chicken from "../src/assets/chicken.png";
 import pasta from "../src/assets/pasta.png";
 import spagheti from "../src/assets/spagheti.png";
 import steak from "../src/assets/steak.png";
-import ToolTip from "./Components/Tooltip";
+import ToolTip from "./Components/ToolTip";
 
 import { gsap } from "gsap";
 
