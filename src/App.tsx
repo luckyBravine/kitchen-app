@@ -12,7 +12,7 @@ import chicken from "../src/assets/chicken.png";
 import pasta from "../src/assets/pasta.png";
 import spagheti from "../src/assets/spagheti.png";
 import steak from "../src/assets/steak.png";
-// import Circle from "./Components/Circle";
+import ToolTip from "./Components/Tooltip";
 
 import { gsap } from "gsap";
 
@@ -31,14 +31,15 @@ function App() {
   const chefList: MutableRefObject<HTMLDivElement | null> =
     useRef<HTMLDivElement | null>(null);
 
-  type StateType = {
-    isActive1: boolean;
-    isActive2: boolean;
-    isActive3: boolean;
-    isActive4: boolean;
-  };
+  // type StateType = {
+  //   isActive1: boolean;
+  //   isActive2: boolean;
+  //   isActive3: boolean;
+  //   isActive4: boolean;
+  // };
+  // <StateType></StateType>
 
-  const [state, setState] = useState<StateType>({
+  const [state, setState] = useState({
     isActive1: true,
     isActive2: false,
     isActive3: false,
@@ -75,8 +76,12 @@ function App() {
   };
 
   const nextSlide = () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     if (imageSlide.current?.children[0].classList.contains("active")) {
-      setState<StateType>({ isActive1: false, isActive2: true });
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setState({ isActive1: false, isActive2: true });
       gsap.to(imageSlide.current?.children[0], 1, {
         backgroundColor: "transparent",
       });
@@ -86,7 +91,9 @@ function App() {
       fadeOut(0, 1);
       fadeIn(1, 1);
     } else if (imageSlide.current?.children[1].classList.contains("active")) {
-      setState<StateType>({ isActive2: false, isActive3: true });
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setState({ isActive2: false, isActive3: true });
       gsap.to(imageSlide.current?.children[1], 1, {
         backgroundColor: "transparent",
       });
@@ -97,7 +104,9 @@ function App() {
       fadeOut(1, 1);
       fadeIn(2, 1);
     } else if (imageSlide.current?.children[2].classList.contains("active")) {
-      setState<StateType>({ isActive3: false, isActive4: true });
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setState({ isActive3: false, isActive4: true });
       gsap.to(imageSlide.current?.children[2], 1, {
         backgroundColor: "transparent",
       });
@@ -108,7 +117,9 @@ function App() {
       fadeOut(2, 1);
       fadeIn(3, 1);
     } else if (imageSlide.current?.children[3].classList.contains("active")) {
-      setState<StateType>({ isActive1: true, isActive4: false });
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setState({ isActive1: true, isActive4: false });
       gsap.to(imageSlide.current?.children[3], 1, {
         backgroundColor: "transparent",
       });
@@ -122,8 +133,12 @@ function App() {
   };
 
   const prevSlide = () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     if (imageSlide.current?.children[0].classList.contains("active")) {
-      setState<StateType>({ isActive1: false, isActive4: true });
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setState({ isActive1: false, isActive4: true });
       gsap.to(imageSlide.current?.children[0], 1, {
         backgroundColor: "transparent",
       });
@@ -134,7 +149,9 @@ function App() {
       fadeOut(0, 1);
       fadeIn(3, 1);
     } else if (imageSlide.current?.children[1].classList.contains("active")) {
-      setState<StateType>({ isActive2: false, isActive1: true });
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setState({ isActive2: false, isActive1: true });
       gsap.to(imageSlide.current?.children[1], 1, {
         backgroundColor: "transparent",
       });
@@ -146,7 +163,9 @@ function App() {
       fadeOut(1, 1);
       fadeIn(0, 1);
     } else if (imageSlide.current?.children[2].classList.contains("active")) {
-      setState<StateType>({ isActive2: true, isActive3: false });
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setState({ isActive2: true, isActive3: false });
       gsap.to(imageSlide.current?.children[2], 1, {
         backgroundColor: "transparent",
       });
@@ -157,7 +176,9 @@ function App() {
       fadeOut(2, 1);
       fadeIn(1, 1);
     } else if (imageSlide.current?.children[3].classList.contains("active")) {
-      setState<StateType>({ isActive3: true, isActive4: false });
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setState({ isActive3: true, isActive4: false });
       gsap.to(imageSlide.current?.children[3], 1, {
         backgroundColor: "transparent",
       });
@@ -467,19 +488,29 @@ function App() {
           </div>
           <div className="hidden lg:flex justify-center items-center mx-auto relative top-[-101vh]">
             <div className="p-2 hover:bg-stone-300 rounded-lg flex justify-center items-center mx-[2.5rem]">
-              <PiForkKnife className="text-2xl font-semibold" />
+              <ToolTip tooltip="Cutlery">
+                <PiForkKnife className="text-2xl font-semibold" />
+              </ToolTip>
             </div>
             <div className="p-2 hover:bg-stone-300 rounded-lg flex justify-center items-center mx-[2.5rem]">
-              <LiaCocktailSolid className="text-2xl font-semibold" />
+              <ToolTip tooltip="Cocktail">
+                <LiaCocktailSolid className="text-2xl font-semibold" />
+              </ToolTip>
             </div>
             <div className="p-2 hover:bg-stone-300 rounded-lg flex justify-center items-center mx-[2.5rem]">
-              <BsChatLeft className="text-2xl font-semibold" />
+              <ToolTip tooltip="Chat">
+                <BsChatLeft className="text-2xl font-semibold" />
+              </ToolTip>
             </div>
             <div className="p-2 hover:bg-stone-300 rounded-lg flex justify-center items-center mx-[2.5rem]">
-              <GoPerson className="text-2xl font-semibold" />
+              <ToolTip tooltip="Profile">
+                <GoPerson className="text-2xl font-semibold" />
+              </ToolTip>
             </div>
             <div className="p-3 hover:bg-stone-300 rounded-full bg-white flex justify-center items-center mx-[2.5rem]">
-              <BsMic className="text-2xl font-semibold" />
+              <ToolTip tooltip="Virtual Assistant">
+                <BsMic className="text-2xl font-semibold" />
+              </ToolTip>
             </div>
           </div>
         </div>
